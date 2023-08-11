@@ -1,3 +1,23 @@
+body {
+    background-color: black;
+}
+
+#Start {
+    color: rgb(97, 0, 148);
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+    left: 33%;
+    top: 65%;
+}
+
+#title {
+    z-index: -1;
+    color: rgba(97, 0, 148, .5);
+    font-size: 150px;
+    text-align: center;
+    letter-spacing: 10px;
+    margin: 20% auto;
 #or1 {
     margin-left: 225px;
     margin-top: 25px;
