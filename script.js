@@ -1,3 +1,4 @@
+var searchButton = document.getElementById("search1");
 let genre = document.getElementById('music-genre');
 let artist = document.getElementById('artist-name');
 let clientID = '8ccc0ced1ff647858ce389e5b4334f6d'
@@ -39,3 +40,4 @@ function access() {
 }
 
 start.onclick = access;
+searchButton.addEventListener('click', getResults);
