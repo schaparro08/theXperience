@@ -1,43 +1,66 @@
 var searchButton = document.getElementById("search1");
 let genre = document.getElementById('music-genre');
-let artist = document.getElementById('artist-name');
+
 let clientID = '8ccc0ced1ff647858ce389e5b4334f6d'
 let clientSecretID = '26ec939798db4170ab988d35ede1f6c6'
 let start = document.getElementById('getId');
-let accessToken = 'BQCyhmTYWO61T-i8CxDB1dIYKPpqEqpJRUpKhUkHU8tzVnQdryFj_QJ8ra1zsID-rYTkT9zT3AS-MiPzevqF2eN_udRre_5VEpJlUMkCuoRGf9Aw1qA'
+let accessToken = 'BQDECcFPKtGMxI-wKkHKbOIWclIhFSe7pI_GP3wXpDeeXAQDIfImpNqe8141BkeOQStfd9jTvBAwjuFOTx-Ba6w4G9PCRfhPDdcJFK-d47s9q0umd7g'
 
 function getResults() {
-
-    fetch('https://api.spotify.com/v1/artists/' + artist, {
+    let artist = document.getElementById('artist-name');
+    let person = artist.value;
+    // let genre = documnet.getElementById('music-genre');
+    // let genreType = genre.value;
+    // if (person == null) {
+    //     // if person is empty use the genre fetch 
+    // } else if ( person !== null) {
+    //     // if the person does have somebody then use it. 
+    // } else {
+    //     // if neither person nor gnere have any content then tell the dumbass user to put something in, can't search for casper -_-
+    // }
+    console.log(person)
+    fetch('https://api.spotify.com/v1/search?q=' + person + '&type=artist&limit=1', {
         method: 'GET',
         headers: {
-            'Authorization': 'Bearer ' + accessToken
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + accessToken,
         }
     })
-        .then(function (response) {
-            return response.json();
+        .then((response) => {
+            return response.json()
+                .then(data => {
+                    let artistID = data.artists.items[0].id
+                    getSongs(artistID)
+                });
         })
-        .then(function (data) {
-            console.log(data)
-        })
+}
+
+function getSongs(artistID) {
+    fetch('https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?market=US', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => response.json())
+        .then((data) => { console.log(data) });
 }
 
 
 function access() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
-        headers: {
-                'Content-type': 'application/x-www-form-urlencoded',
-
-        },
-        body: 
-            'grant_type=client_credentials&client_id=8ccc0ced1ff647858ce389e5b4334f6d&client_secret=26ec939798db4170ab988d35ede1f6c6',
-        
+        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        body: 'grant_type=client_credentials&client_id=8ccc0ced1ff647858ce389e5b4334f6d&client_secret=26ec939798db4170ab988d35ede1f6c6',
     })
-    .then(function (response) {
-        return console.log(response.json());
-    })
+        .then(function (response) {
+            return console.log(response.json());
+        })
 }
+
 
 start.onclick = access;
 searchButton.addEventListener('click', getResults);

@@ -16,7 +16,7 @@
 
     <h1 id="title">TheXperience</h1>
     <h1 id="Start">Start your Experience here</h1>
-    <button id="getId">Start</button> 
+    <button id="getId">Start</button>
 
 
     <!-- Button trigger modal -->
@@ -24,6 +24,7 @@
         Launch demo modal
     </button>
     <!-- Modal -->
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -34,9 +35,9 @@
                 <div class="modal-body">
                     <h5> Search By Artist:</h5>
                     <!-- Input artist name -->
-                    <div id="artist-name" class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                            aria-describedby="basic-addon1">
+                    <div class="input-group mb-3">
+                        <input type="text" id="artist-name" class="form-control" placeholder="Username"
+                            aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <h6 id="or1">OR</h6>
                     <h5> Search By Genre:</h5>
@@ -48,7 +49,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="search1"class="btn btn-primary">Search!</button>
+                    <button type="button" id="search1" class="btn btn-primary" data-bs-dismiss="modal">Search!</button>
                 </div>
             </div>
         </div>
