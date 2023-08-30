@@ -55,7 +55,7 @@ function getSongs(artistID) {
 function access() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
-        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
         body: 'grant_type=client_credentials&client_id=8ccc0ced1ff647858ce389e5b4334f6d&client_secret=26ec939798db4170ab988d35ede1f6c6',
     })
         .then(function (response) {
@@ -67,10 +67,19 @@ function test(person) {
     fetch('https://api.seatgeek.com/2/events?performers.slug=' + person + '&client_id=MzYxNDMxMTd8MTY5MzM1MzQxNS45NTA3ODU', {
         method: 'GET',
     })
-    .then(function (response) {
-        return console.log(response.json())
-    })
+        .then(function (response) {
+            return console.log(response.json())
+        })
 }
+
+
+
+$(searchButton).click(function (e) {
+    e.preventDefault();
+    $("#body1").hide();
+});
+
+
 
 
 start.onclick = access;
