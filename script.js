@@ -5,6 +5,8 @@ let clientID = '8ccc0ced1ff647858ce389e5b4334f6d'
 let clientSecretID = '26ec939798db4170ab988d35ede1f6c6'
 let start = document.getElementById('getId');
 let accessToken = 'BQDECcFPKtGMxI-wKkHKbOIWclIhFSe7pI_GP3wXpDeeXAQDIfImpNqe8141BkeOQStfd9jTvBAwjuFOTx-Ba6w4G9PCRfhPDdcJFK-d47s9q0umd7g'
+let seatClient = 'MzYxNDMxMTd8MTY5MzM1MzQxNS45NTA3ODU';
+let seatSecret = '63b0829091cb8fa1d4524525e38deac550696e3b07d98fb7bac9634af48f255d';
 
 function getResults() {
     let artist = document.getElementById('artist-name');
@@ -62,5 +64,16 @@ function access() {
 }
 
 
+
+$(searchButton).click(function(e) { 
+    e.preventDefault();
+    $("#body1").hide();
+});
+
+
+
+
 start.onclick = access;
 searchButton.addEventListener('click', getResults);
+
+
