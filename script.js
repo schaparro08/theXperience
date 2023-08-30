@@ -4,9 +4,7 @@ let genre = document.getElementById('music-genre');
 let clientID = '8ccc0ced1ff647858ce389e5b4334f6d'
 let clientSecretID = '26ec939798db4170ab988d35ede1f6c6'
 let start = document.getElementById('getId');
-let accessToken = 'BQDECcFPKtGMxI-wKkHKbOIWclIhFSe7pI_GP3wXpDeeXAQDIfImpNqe8141BkeOQStfd9jTvBAwjuFOTx-Ba6w4G9PCRfhPDdcJFK-d47s9q0umd7g'
-let seatClient = 'MzYxNDMxMTd8MTY5MzM1MzQxNS45NTA3ODU';
-let seatSecret = '63b0829091cb8fa1d4524525e38deac550696e3b07d98fb7bac9634af48f255d';
+let accessToken = 'BQDJygGcxyRV5AEna0D6ZJV1Y9yig5CLbBx07FaDoxAgHjjZqLg__vk2a2G08FmqwOfIo2HfpOXrHVqazDtVbaVIvNCwkckQIjmCPa2HZWe7Q46Rxy0'
 
 function getResults() {
     let artist = document.getElementById('artist-name');
@@ -32,8 +30,10 @@ function getResults() {
         .then((response) => {
             return response.json()
                 .then(data => {
+                    console.log(data)
                     let artistID = data.artists.items[0].id
                     getSongs(artistID)
+                    test(person)
                 });
         })
 }
@@ -55,7 +55,7 @@ function getSongs(artistID) {
 function access() {
     fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
-        headers: {'Content-type': 'application/x-www-form-urlencoded'},
+        headers: { 'Content-type': 'application/x-www-form-urlencoded' },
         body: 'grant_type=client_credentials&client_id=8ccc0ced1ff647858ce389e5b4334f6d&client_secret=26ec939798db4170ab988d35ede1f6c6',
     })
         .then(function (response) {
@@ -63,9 +63,18 @@ function access() {
         })
 }
 
+function test(person) {
+    fetch('https://api.seatgeek.com/2/events?performers.slug=' + person + '&client_id=MzYxNDMxMTd8MTY5MzM1MzQxNS45NTA3ODU', {
+        method: 'GET',
+    })
+        .then(function (response) {
+            return console.log(response.json())
+        })
+}
 
 
-$(searchButton).click(function(e) { 
+
+$(searchButton).click(function (e) {
     e.preventDefault();
     $("#body1").hide();
 });
@@ -75,5 +84,4 @@ $(searchButton).click(function(e) {
 
 start.onclick = access;
 searchButton.addEventListener('click', getResults);
-
-
+searchButton.onclick = test;
